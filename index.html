@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Strategic Presentation: Kalshi & Pickswise</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-bg: #0B0E14;
+            --card-bg: #161B22;
+            --header-grad: linear-gradient(135deg, #0B0E14 0%, #161B22 100%);
+            --accent-blue: #58A6FF;
+            --accent-cyan: #00D1FF;
+            --text-main: #E6EDF3;
+            --text-dim: #8B949E;
+            --border: #30363D;
+            --success: #238636;
+            --danger: #F85149;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; line-height: 1.6; color: var(--text-main); background-color: var(--primary-bg); padding-bottom: 60px; }
+        
+        header { 
+            background: var(--header-grad); 
+            border-bottom: 1px solid var(--border); 
+            padding: 5rem 2rem; 
+            text-align: center; 
+            margin-bottom: 3rem; 
+        }
+        header h1 { font-size: 2.8rem; font-weight: 700; color: white; letter-spacing: -1.5px; }
+        header p { color: var(--accent-blue); font-weight: 400; font-size: 1.2rem; margin-top: 10px; }
+        
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 25px; }
+
+        h2 { font-size: 1.6rem; color: white; margin: 4rem 0 1.5rem; display: flex; align-items: center; gap: 12px; }
+        h2::after { content: ''; flex: 1; height: 1px; background: var(--border); margin-left: 20px; }
+
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
+        
+        /* CARD AND LIST ALIGNMENT FIX */
+        .card { 
+            background: var(--card-bg); 
+            padding: 2.5rem; 
+            border-radius: 20px; 
+            border: 1px solid var(--border); 
+            transition: all 0.3s ease; 
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        .card:hover { border-color: var(--accent-blue); transform: translateY(-8px); box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        .card h3 { color: var(--accent-cyan); margin-bottom: 24px; font-size: 1.3rem; font-weight: 700; }
+
+        .card ul { list-style: none; padding: 0; margin: 0; flex-grow: 1; }
+        .card ul li { 
+            margin-bottom: 16px; 
+            display: flex; 
+            align-items: flex-start; 
+            gap: 12px; 
+            color: var(--text-dim); 
+            font-size: 0.95rem;
+        }
+        .card ul li i { 
+            color: var(--accent-cyan); 
+            font-size: 0.8rem; 
+            margin-top: 5px; 
+            flex-shrink: 0; 
+            width: 15px; 
+            text-align: center;
+        }
+        .card ul li span { flex: 1; }
+
+        /* TABLES AND ACCORDIONS */
+        .table-container { background: var(--card-bg); border-radius: 20px; border: 1px solid var(--border); overflow: hidden; margin-bottom: 2rem; }
+        table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+        th { background: #1C2128; color: var(--accent-blue); text-align: left; padding: 20px; text-transform: uppercase; letter-spacing: 1px; }
+        td { padding: 20px; border-top: 1px solid var(--border); color: var(--text-dim); }
+        
+        .campaign-details { background: var(--card-bg); border: 1px solid var(--border); border-radius: 12px; margin-bottom: 15px; overflow: hidden; }
+        .campaign-summary { padding: 18px 25px; cursor: pointer; font-weight: 700; color: white; list-style: none; display: flex; justify-content: space-between; align-items: center; background: rgba(88, 166, 255, 0.05); }
+        .campaign-content { padding: 20px; border-top: 1px solid var(--border); }
+        
+        .adgroup-details { margin-bottom: 10px; border: 1px solid #30363d; border-radius: 8px; }
+        .adgroup-summary { padding: 12px 20px; cursor: pointer; color: var(--accent-cyan); font-weight: 600; list-style: none; display: flex; justify-content: space-between; align-items: center; font-size: 0.9rem; }
+        
+        .keyword-table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+        .keyword-table td { padding: 8px 15px; font-size: 0.85rem; border-top: 1px solid #30363d; }
+        .vol-badge { background: #30363D; padding: 2px 10px; border-radius: 4px; color: var(--accent-cyan); font-weight: 600; }
+
+        .strategy-box { background: linear-gradient(90deg, #161B22 0%, #0B0E14 100%); border-left: 4px solid var(--accent-blue); padding: 2rem; border-radius: 0 20px 20px 0; margin-bottom: 25px; border: 1px solid var(--border); border-left: 4px solid var(--accent-blue); }
+
+        .badge { padding: 4px 12px; border-radius: 20px; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; margin-top: 15px; display: inline-block; }
+        .badge-safe { background: rgba(35, 134, 54, 0.1); color: var(--success); border: 1px solid var(--success); }
+        .badge-warning { background: rgba(248, 81, 73, 0.1); color: var(--danger); border: 1px solid var(--danger); }
+
+        footer { text-align: center; margin-top: 6rem; padding: 3rem; color: var(--text-dim); font-size: 0.8rem; border-top: 1px solid var(--border); }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="container">
+        <h1>KALSHI STRATEGIC PLAN</h1>
+        <p>Pickswise Partnership | Market Expansion 2026</p>
+    </div>
+</header>
+
+<div class="container">
+
+    <section>
+        <h2><i class="fa-solid fa-circle-info"></i> What is Kalshi?</h2>
+        <div class="grid">
+            <div class="card">
+                <h3>Platform Identity</h3>
+                <ul>
+                    <li><i class="fa-solid fa-bolt"></i><span><strong>Regulated Prediction Market:</strong> An American platform for trading on real-world outcomes[cite: 2].</span></li>
+                    <li><i class="fa-solid fa-bolt"></i><span><strong>Financial Model:</strong> Operates as a Designated Contract Market (DCM), supervised by the <strong>CFTC</strong>[cite: 8].</span></li>
+                    <li><i class="fa-solid fa-bolt"></i><span><strong>Legal Status:</strong> It is a financial exchange for derivatives, not a traditional casino[cite: 10].</span></li>
+                </ul>
+                <span class="badge badge-safe">US Federal Regulation</span>
+            </div>
+            <div class="card">
+                <h3>Product Mechanics</h3>
+                <ul>
+                    <li><i class="fa-solid fa-bolt"></i><span><strong>Binary Contracts:</strong> Users trade "Yes" or "No" on events like inflation or elections[cite: 6].</span></li>
+                    <li><i class="fa-solid fa-bolt"></i><span><strong>Payout Structure:</strong> Contracts pay a fixed value ($1) if correct, or $0 if incorrect[cite: 14, 15].</span></li>
+                    <li><i class="fa-solid fa-bolt"></i><span><strong>Market Pricing:</strong> Prices reflect the market's estimated probability of an event[cite: 13].</span></li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <h2><i class="fa-solid fa-lock"></i> Access & Restrictions</h2>
+        <div class="strategy-box">
+            <h3>Strict Geographical Boundaries</h3>
+            <ul>
+                <li><i class="fa-solid fa-bolt"></i><span><strong>US Residents Only:</strong> Users must provide a US residential address and identity proof[cite: 22, 23].</span></li>
+                <li><i class="fa-solid fa-bolt"></i><span><strong>KYC Verification:</strong> Identity must be verified under US federal regulations (CFTC)[cite: 24].</span></li>
+                <li><i class="fa-solid fa-bolt"></i><span><strong>No Workarounds:</strong> Using VPNs is not a valid or legal way to access the platform[cite: 31, 32].</span></li>
+            </ul>
+            <span class="badge badge-warning">No Global Access Without Local Approval</span>
+        </div>
+    </section>
+
+    <section>
+        <h2><i class="fa-solid fa-magnifying-glass-chart"></i> Google Ads Phase 1: Test Data</h2>
+        <p style="color: var(--text-dim); margin-bottom: 2rem;">Full breakdown of campaigns, ad groups, and keyword volumes for testing.</p>
+
+        <details class='campaign-details' open>
+          <summary class='campaign-summary'>Kalshi - Prediction Markets <i class='fa-solid fa-chevron-down'></i></summary>
+          <div class='campaign-content'>
+            <details class='adgroup-details' open>
+              <summary class='adgroup-summary'>Prediction Markets – General / Concept <i class='fa-solid fa-chevron-down'></i></summary>
+              <table class='keyword-table'>
+                <thead><tr><th>Keyword</th><th style='text-align:right'>Avg. Monthly Searches</th></tr></thead>
+                <tbody>
+                  <tr><td>prediction markets</td><td style='text-align:right'><span class='vol-badge'>9,900</span></td></tr>
+                  <tr><td>prediction stock market</td><td style='text-align:right'><span class='vol-badge'>8,100</span></td></tr>
+                  <tr><td>betting prediction</td><td style='text-align:right'><span class='vol-badge'>1,300</span></td></tr>
+                  <tr><td>kalshi prediction markets</td><td style='text-align:right'><span class='vol-badge'>1,000</span></td></tr>
+                  <tr><td>polymarket app</td><td style='text-align:right'><span class='vol-badge'>590</span></td></tr>
+                  <tr><td>polymarket crypto</td><td style='text-align:right'><span class='vol-badge'>480</span></td></tr>
+                </tbody>
+              </table>
+            </details>
+          </div>
+        </details>
+
+        <details class='campaign-details'>
+          <summary class='campaign-summary'>Betting Marketplace / Futures <i class='fa-solid fa-chevron-down'></i></summary>
+          <div class='campaign-content'>
+            <details class='adgroup-details'>
+              <summary class='adgroup-summary'>Betting Marketplace / Futures <i class='fa-solid fa-chevron-down'></i></summary>
+              <table class='keyword-table'>
+                <tbody>
+                  <tr><td>betting marketplace</td><td style='text-align:right'><span class='vol-badge'>1,900</span></td></tr>
+                  <tr><td>betting markets</td><td style='text-align:right'><span class='vol-badge'>1,900</span></td></tr>
+                  <tr><td>bet on anything</td><td style='text-align:right'><span class='vol-badge'>1,900</span></td></tr>
+                </tbody>
+              </table>
+            </details>
+            <details class='adgroup-details'>
+              <summary class='adgroup-summary'>Real-Life / Event Betting <i class='fa-solid fa-chevron-down'></i></summary>
+              <table class='keyword-table'>
+                <tbody>
+                  <tr><td>bet on the weather</td><td style='text-align:right'><span class='vol-badge'>590</span></td></tr>
+                  <tr><td>event betting</td><td style='text-align:right'><span class='vol-badge'>260</span></td></tr>
+                  <tr><td>bet on survivor</td><td style='text-align:right'><span class='vol-badge'>140</span></td></tr>
+                </tbody>
+              </table>
+            </details>
+          </div>
+        </details>
+
+        <details class='campaign-details'>
+          <summary class='campaign-summary'>Kalshi - Political Betting <i class='fa-solid fa-chevron-down'></i></summary>
+          <div class='campaign-content'>
+            <details class='adgroup-details'>
+              <summary class='adgroup-summary'>Political Betting – General <i class='fa-solid fa-chevron-down'></i></summary>
+              <table class='keyword-table'>
+                <tbody>
+                  <tr><td>bet on politics</td><td style='text-align:right'><span class='vol-badge'>1,000</span></td></tr>
+                  <tr><td>presidential odds</td><td style='text-align:right'><span class='vol-badge'>1,000</span></td></tr>
+                  <tr><td>political gambling site</td><td style='text-align:right'><span class='vol-badge'>590</span></td></tr>
+                </tbody>
+              </table>
+            </details>
+          </div>
+        </details>
+    </section>
+
+    <footer>
+        <p>PICKWISE & KALSHI | CONFIDENTIAL STRATEGIC PLAN | 2026</p>
+    </footer>
+</div>
+
+</body>
+</html>
